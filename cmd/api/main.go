@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"task-api/internal/data"
 	"time"
 )
 
@@ -17,6 +18,7 @@ type config struct {
 }
 
 type application struct {
+	models 			data.Models
 	config			config
 	logger 			*log.Logger
 	version 		string
@@ -34,6 +36,7 @@ func main() {
 	logger := log.New(os.Stdout, "", log.Ldate | log.Ltime | log.Lshortfile)
 
 	app := application{
+		models: data.NewModels(nil), // TODO replace the nil with a real db connection i.e *sql.DB
 		config: cfg,
 		logger: logger,
 		version: version,

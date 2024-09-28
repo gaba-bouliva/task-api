@@ -24,6 +24,8 @@ func (app *application) routes() http.Handler {
 
 	apiRouter := chi.NewRouter()
 
+	apiRouter.Get("/tasks", app.listTasksHandler)
+
 	r.Mount("/api/v1", apiRouter)
 
 	return  r
